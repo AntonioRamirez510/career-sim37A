@@ -1,7 +1,5 @@
 require(`dotenv`).config();
 const client = require(`./client`)
-console.log(process.env.DATABASE_URL)
-// client.connect();
 const dropTables = async() =>{
   try {
     await client.query(`
