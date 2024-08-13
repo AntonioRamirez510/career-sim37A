@@ -7,6 +7,7 @@ const dropTables = async() =>{
       DROP TABLE IF EXISTS items;
       DROP TABLE IF EXISTS reviews;
       `)
+      console.log(`TABLES DROP KICKED`)
   }catch(error){
     console.log(error);
   }
@@ -38,6 +39,7 @@ const createTables = async()=>{
         FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
         UNIQUE (user_id, item_id)
         );`);
+    console.log(`TABLES CREATED`)
   } catch(error){
     console.log(error);
   }
@@ -60,13 +62,8 @@ const init = async()=>{
     console.log(`client connected`)
 
     await dropTables();
-    console.log(`TABLES DROP KICKED`)
 
     await createTables();
-    console.log(`TABLES CREATED`)
-
-    await seedTables();
-    console.log(`Seeding Complete!`)
 
     await client.end();
     console.log(`Disconnected`)
